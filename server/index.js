@@ -1,8 +1,10 @@
 const express = require('express');
-console.log('here i am!');
+const path = require('path');
 
 const port = 3000;
 const server = express();
+
+server.use(express.static(path.join(__dirname, '../dist')));
 
 server.use('/', (req, res) => {
   res.send(200, 'goodbye, thou buffoon!');
