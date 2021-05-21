@@ -5,7 +5,7 @@ const port = 3000;
 const server = express();
 
 server.use('/', (req, res) => {
-  res.send('hullo there!');
+  res.send(200, 'goodbye, thou buffoon!');
   console.log('message sent');
 })
 
