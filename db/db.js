@@ -9,8 +9,25 @@ const client = new pg.Client({
 async function query() {
   await client.connect();
   const query = await client.query('SELECT * FROM cards');
-  console.log(query);
   client.end();
+  return query;
 }
 
-query();
+const suitkey = {
+  'H': 'Hearts',
+  'D': 'Diamonds',
+  'S': 'Spades',
+  'C': 'Clubs'
+};
+
+query().then((result) => {
+  // console.log('hello');
+  // console.log(typeof result);
+  // console.log(JSON.stringify(result));
+  for (let card of result.rows) {
+    if (card.val === '1') {
+      card.val = '10';
+    }
+    console.log(`${card.val} of ${suitkey[card.suit]}`);
+  }
+});
