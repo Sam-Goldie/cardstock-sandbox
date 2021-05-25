@@ -13,7 +13,23 @@ async function query() {
   return query;
 }
 
-const suitkey = {
+const valKey = {
+  '2': '2',
+  '3': '3',
+  '4': '4',
+  '5': '5',
+  '6': '6',
+  '7': '7',
+  '8': '8',
+  '9': '9',
+  '1': '10',
+  'J': 'Jack',
+  'Q': 'Queen',
+  'K': 'King',
+  'A': 'Ace'
+};
+
+const suitKey = {
   'H': 'Hearts',
   'D': 'Diamonds',
   'S': 'Spades',
@@ -25,9 +41,6 @@ query().then((result) => {
   // console.log(typeof result);
   // console.log(JSON.stringify(result));
   for (let card of result.rows) {
-    if (card.val === '1') {
-      card.val = '10';
-    }
-    console.log(`${card.val} of ${suitkey[card.suit]}`);
+    console.log(`${valKey[card.val]} of ${suitKey[card.suit]}`);
   }
 });
