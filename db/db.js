@@ -1,16 +1,14 @@
 const pg = require('pg');
 
-const client = new pg.Client({
+const pool = new pg.Pool({
   user: 'samgoldie',
   database: 'carddb',
   port: 5432
 });
 
 async function query() {
-  await client.connect();
-  const query = await client.query('SELECT * FROM cards');
-  client.end();
-  return query;
+  await pool.connect();
+  return await pool.query('SELECT * FROM cards');
 }
 
 const valKey = {
@@ -44,3 +42,5 @@ query().then((result) => {
     console.log(`${valKey[card.val]} of ${suitKey[card.suit]}`);
   }
 });
+
+module.exports = query;
