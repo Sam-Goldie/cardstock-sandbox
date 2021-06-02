@@ -3,7 +3,7 @@ import React from 'react';
 const Card = ({ card }) => {
   return (
     <div>
-      {card.value} of {card.suit}
+      {card.val} of {card.suit}
     </div>
   )
 };

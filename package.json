@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/Sam-Goldie/cardstock-sandbox#readme",
   "dependencies": {
+    "@types/regenerator-runtime": "^0.13.0",
+    "axios": "^0.21.1",
     "express": "^4.17.1",
     "nodemon": "^2.0.7",
     "path": "^0.12.7",

@@ -10,6 +10,7 @@ server.use(express.static(path.join(__dirname, '../dist')));
 server.get('/playingcards', async (req, res) => {
   console.log('looking at playing card deck!');
   const fiftyTwoDeck = await query();
+  console.log('fiftytwo deck is: ' + JSON.stringify(fiftyTwoDeck));
   res.status(200).send(fiftyTwoDeck);
 });
 

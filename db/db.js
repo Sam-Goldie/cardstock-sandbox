@@ -6,11 +6,6 @@ const pool = new pg.Pool({
   port: 5432
 });
 
-async function query() {
-  await pool.connect();
-  return await pool.query('SELECT * FROM cards');
-}
-
 const valKey = {
   '2': '2',
   '3': '3',
@@ -34,13 +29,15 @@ const suitKey = {
   'C': 'Clubs'
 };
 
-query().then((result) => {
-  // console.log('hello');
-  // console.log(typeof result);
-  // console.log(JSON.stringify(result));
-  for (let card of result.rows) {
-    console.log(`${valKey[card.val]} of ${suitKey[card.suit]}`);
+async function query() {
+  console.log('query just fired!');
+  await pool.connect();
+  const dbResponse = await pool.query('SELECT * FROM cards');
+  for (let row of dbResponse.rows) {
+    row.val = valKey[row.val];
+    row.suit = suitKey[row.suit];
   }
-});
+  return dbResponse;
+}
 
 module.exports = query;
