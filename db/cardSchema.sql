@@ -1,4 +1,4 @@
 CREATE TABLE IF NOT EXISTS cards (
-  val CHAR(1),
-  suit CHAR(1)
+  title VARCHAR(35),
+  body VARCHAR(400)
 );

@@ -22,6 +22,18 @@ const App = () => {
     console.log('here are the cards stringified: ' + JSON.stringify(cards));
   };
 
+  const createCard = async (name) => {
+    const newCard = await axios.post('/cards', name);
+    if (newCard.status === 200) {
+      changeCards((oldCards) => {
+        oldCards.push(name);
+        return oldCards;
+      });
+    }
+  };
+
+  createCard('Evil Draculanoid');
+
   return (
     <div>
       <button onClick={getCards}>Get Cards</button>

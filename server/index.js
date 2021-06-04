@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const query = require('../db/db.js');
+const [query, addCard] = require('../db/db.js');
 
 const port = 3000;
 const server = express();
@@ -12,6 +12,11 @@ server.get('/playingcards', async (req, res) => {
   const fiftyTwoDeck = await query();
   console.log('fiftytwo deck is: ' + JSON.stringify(fiftyTwoDeck));
   res.status(200).send(fiftyTwoDeck);
+});
+
+server.post('/cards', async (req, res) => {
+  const newCard = await addCard();
+  res.status(200).send();
 });
 
 server.use('/', (req, res) => {

@@ -40,4 +40,28 @@ async function query() {
   return dbResponse;
 }
 
-module.exports = query;
+async function addCard(title, body) {
+  await pool.connect();
+  const queryText = `INSERT INTO cards(title, body)
+                     VALUES ('${title}', '${body}');`;
+  console.log('queryText is: ' + queryText);
+  try {
+
+    const dbResponse = await pool.query(queryText);
+    console.log('this is the dbResponse: ' + JSON.stringify(dbResponse));
+    return dbResponse;
+  } catch (err) {
+    console.error('Card not created!');
+  }
+}
+
+
+// INSERT INTO table_name(column1, column2, …)
+// VALUES (value1, value2, …);
+
+addCard('hi', `In countries like the United States`);
+
+module.exports = [
+  query,
+  addCard
+];
